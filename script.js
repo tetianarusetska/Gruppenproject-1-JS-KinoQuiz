@@ -7,6 +7,8 @@ const resultScreenElement = document.getElementById("result-screen");
 
 const answersListElement = document.getElementById("answerslist");
 
+const questionTextElement = document.getElementById("questionstext");
+
 
 const questions = [
     {
@@ -93,12 +95,10 @@ let score = 0;
 
 const getQuizButton = document.getElementById("getQuiz");
 
-const answers = questions[currentIndex].answers;
-
 
 
 getQuizButton.addEventListener("click", () => {
-    showQuestion(0)
+    showQuestion(currentIndex)
 })
 
 
@@ -109,21 +109,84 @@ function showScreen(id) {
 
 
 }
-function showQuestion(currentIndex) {
+function showQuestion(index) {
+    const question = questions[index];
 
-    quizScreenElement.textContent = questions[currentIndex].question;
+    
+    questionTextElement.textContent = `Frage 1: ${question.question}`;
 
-    const answers = questions[currentIndex].answers; // ✅ move here
+    
+    answersListElement.innerHTML = "";
 
-    answersListElement.innerHTML = ""; // clear old answers
+     const acceptButton = document.createElement("button");
+     acceptButton.id = "acceptButton"
+     
+        acceptButton.textContent ="Ok";
 
-    answers.forEach(answerObj => {
-        const li = document.createElement("li");
-        li.textContent = answerObj.answer;
-        answersListElement.appendChild(li);
-        console.log(answerObj);
+        quizScreenElement.appendChild(acceptButton);
+
+        
+    acceptButton.addEventListener("click", () => {
+        
+        currentIndex++;
+        console.log("Button clicked!");
+
+        if (currentIndex < questions.length) {
+            showQuestion(currentIndex);
+        } else {
+            console.log("Quiz finished! Score:", score);
+            
+        }
     });
+
+    
+    question.answers.forEach(answerObj => {
+        const li = document.createElement("li");
+
+        
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = answerObj.answer; 
+
+        
+        li.appendChild(checkbox);
+
+       
+        const text = document.createTextNode(" " + answerObj.answer);
+        li.appendChild(text);
+
+        
+        
+
+       
+
+        answersListElement.appendChild(li);
+
+
+
+
+        
+    });
+
 }
+
+const acceptButton = document.getElementById("acceptButton");
+
+
+
+
+
+
+
+// function checkAnswer(selectedIndex) {
+//   // Vergleich mit isCorrect
+//   // score erhöhen falls richtig
+//   // currentIndex++
+//   // showQuestion(currentIndex) oder showScreen("result-screen")
+// }
+
+
+
 
 
 //     quizScreenElement.innerHTML = `
@@ -132,7 +195,7 @@ function showQuestion(currentIndex) {
 //         <p>${questions[currentIndex].answers}</p>
 //       </div>
 //     `;
-}
+
 
 
 function checkAnswer(selectedIndex) {
