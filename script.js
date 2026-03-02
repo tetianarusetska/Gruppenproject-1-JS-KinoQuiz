@@ -5,6 +5,8 @@ const quizScreenElement = document.getElementById("quiz-screen");
 
 const resultScreenElement = document.getElementById("result-screen");
 
+const answersListElement = document.getElementById("answerslist");
+
 
 const questions = [
     {
@@ -86,33 +88,50 @@ const questions = [
 
 console.log(questions)
 
-
+let currentIndex = 0;
+let score = 0;
 
 const getQuizButton = document.getElementById("getQuiz");
 
+const answers = questions[currentIndex].answers;
+
+
+
 getQuizButton.addEventListener("click", () => {
-    showQuestion(2)
+    showQuestion(0)
 })
 
 
 
-let currentIndex = 0;
-let score = 0;
+
 
 function showScreen(id) {
 
 
 }
 function showQuestion(currentIndex) {
-    // quizScreenElement.textContent = questions[1].question;
+
+    quizScreenElement.textContent = questions[currentIndex].question;
+
+    const answers = questions[currentIndex].answers; // ✅ move here
+
+    answersListElement.innerHTML = ""; // clear old answers
+
+    answers.forEach(answerObj => {
+        const li = document.createElement("li");
+        li.textContent = answerObj.answer;
+        answersListElement.appendChild(li);
+        console.log(answerObj);
+    });
+}
 
 
-    quizScreenElement.innerHTML = `
-        <div><h3>Frage ${currentIndex + 1}</h3>
-        <p>${questions[currentIndex].question}</p>
-        <p>${questions[currentIndex].answers.join(", ")}</p>
-      </div>
-    `;
+//     quizScreenElement.innerHTML = `
+//         <div><h3>Frage ${currentIndex + 1}</h3>
+//         <p>${questions[currentIndex].question}</p>
+//         <p>${questions[currentIndex].answers}</p>
+//       </div>
+//     `;
 }
 
 
