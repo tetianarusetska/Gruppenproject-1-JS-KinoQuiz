@@ -288,6 +288,11 @@ const questions = [
 let currentIndex = 0;
 let score = 0;
 
+
+noShowScreen("quiz-screen");
+noShowScreen("result-screen");
+showScreen("start-screen");
+
 // start quiz
 startQuizButton.addEventListener("click", () => {
     noShowScreen("start-screen");
@@ -306,9 +311,11 @@ const toStartButton = document.getElementById("toStart");
 // show result-screen
 toStartButton.addEventListener("click", () => {
     score = 0;
+    currentIndex = 0;
     noShowScreen("quiz-screen");
     showScreen("start-screen");
 });
+
 
 // show screen
 function showScreen(id) {
@@ -380,7 +387,7 @@ function showQuestion(currentIndex) {
         } else {
             noShowScreen("quiz-screen");
             showScreen("result-screen");
-            resultText.textContent = `Deine Ergebnis: ${score}/2000 points`;
+            resultText.textContent = `Deine Ergebnis:\n${score} / 2000 points`;
         }
     });
 }

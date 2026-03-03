@@ -69,7 +69,21 @@ body {
     background-color: lightgrey;
 }
 
-.activeStartScreen, #result-screen {
+.screen {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-top: 300px;
+    border-radius: 8px;
+    padding: 16px;
+    margin-inline: auto;
+    width: 500px;
+}
+
+.activeStartScreen {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -82,14 +96,28 @@ body {
     margin-right: auto;
     margin-left: auto;
     width: 500px;
-} 
+}
+
+#result-screen {
+    background-color: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-top: 300px;
+    border-radius: 8px;
+    padding: 16px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 500px;
+}
 
 h1 {
     font-size: 33px;
 }
 
 h2 {
-  font-size: 30px;
+    font-size: 30px;
 }
 
 .quiz {
@@ -116,6 +144,7 @@ h2 {
 #startQuiz:hover {
     background-color: lightskyblue;
 }
+
 .wilkommen {
     font-size: 22px;
 }
@@ -153,6 +182,8 @@ input {
 
 #resultText {
     font-size: 24px;
+    white-space: pre-line;
+    text-align: center;
 }
 
 #toStart {
