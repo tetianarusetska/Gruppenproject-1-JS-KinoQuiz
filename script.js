@@ -355,7 +355,7 @@ function showQuestion(currentIndex) {
         answersElement.appendChild(document.createElement("br"));
     });
 
-
+    
     const submitButton = document.getElementById("submitButton");
 
     submitButton.addEventListener("click", () => {
