@@ -300,11 +300,6 @@ startQuizButton.addEventListener("click", () => {
     showQuestion(currentIndex);
 });
 
-resultScreenElement.innerHTML = `
-        <p id="resultText"></p>
-        <button id="toStart">Zurück</button>
-    `;
-
 const resultText = document.getElementById("resultText");
 const toStartButton = document.getElementById("toStart");
 
@@ -313,6 +308,7 @@ toStartButton.addEventListener("click", () => {
     score = 0;
     currentIndex = 0;
     noShowScreen("quiz-screen");
+    noShowScreen("result-screen");
     showScreen("start-screen");
 });
 
@@ -337,7 +333,7 @@ function showQuestion(currentIndex) {
     quizScreenElement.innerHTML = `
       <div class="quiz">
           <h2>Frage ${currentIndex + 1}</h2>
-          <p class="question">${question.question}</p>
+          <p class="question"><mark>${question.question}</mark></p>
           <div id="answers" class="answer"></div>
           <button id="submitButton">Bestätigen</button>
       </div>

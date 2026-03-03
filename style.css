@@ -62,15 +62,16 @@
 
 :root {
     --mainFont: "Monserrat", sans-serif;
+    --decorativeFont: "Almendra";
 }
 
 body {
     font-family: var(--mainFont);
-    background-color: lightgrey;
+    background-color: rgb(0, 0, 0);
 }
 
 .screen {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -83,41 +84,14 @@ body {
     width: 500px;
 }
 
-.activeStartScreen {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    margin-top: 300px;
-    border-radius: 8px;
-    padding: 16px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 500px;
-}
-
-#result-screen {
-    background-color: white;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    margin-top: 300px;
-    border-radius: 8px;
-    padding: 16px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 500px;
-}
-
 h1 {
     font-size: 33px;
+    font-family: var(--decorativeFont);
 }
 
 h2 {
     font-size: 30px;
+    font-family: var(--decorativeFont);
 }
 
 .quiz {
@@ -135,10 +109,12 @@ h2 {
 }
 
 #startQuiz {
+    letter-spacing: 2px;
     font-size: 17px;
     padding: 8px 12px;
     border: none;
     border-radius: 4px;
+    background-color: rgb(148, 178, 197);
 }
 
 #startQuiz:hover {
@@ -147,6 +123,7 @@ h2 {
 
 .wilkommen {
     font-size: 22px;
+    letter-spacing: 1.6px;
 }
 
 .hidden {
@@ -158,7 +135,7 @@ h2 {
 }
 
 input {
-    margin: 12px;
+    margin: 8px;
     width: 20px;
     height: 20px;
 }
@@ -168,12 +145,14 @@ input {
 }
 
 #submitButton {
+    letter-spacing: 1.6px;
     font-size: 17px;
-    background-color: lightgrey;
+    background-color: rgb(148, 178, 197);
     padding: 6px 10px;
     border: none;
     border-radius: 4px;
     width: fit-content;
+
 }
 
 #submitButton:hover {
@@ -184,6 +163,7 @@ input {
     font-size: 24px;
     white-space: pre-line;
     text-align: center;
+    font-family: var(--decorativeFont);
 }
 
 #toStart {
@@ -193,6 +173,8 @@ input {
     border: none;
     border-radius: 4px;
     width: fit-content;
+    letter-spacing: 1.6px;
+    background-color: rgb(148, 178, 197);
 }
 
 #toStart:hover {
