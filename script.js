@@ -288,31 +288,50 @@ const questions = [
 let currentIndex = 0;
 let score = 0;
 
-
+// start quiz
 startQuizButton.addEventListener("click", () => {
+    noShowScreen("start-screen");
     showScreen("quiz-screen");
     showQuestion(currentIndex);
 });
 
+resultScreenElement.innerHTML = `
+        <p id="resultText"></p>
+        <button id="toStart">Zurück</button>
+    `;
 
+const resultText = document.getElementById("resultText");
+const toStartButton = document.getElementById("toStart");
+
+// show result-screen
+toStartButton.addEventListener("click", () => {
+    score = 0;
+    noShowScreen("quiz-screen");
+    showScreen("start-screen");
+});
+
+// show screen
 function showScreen(id) {
-    startScreenElement.classList.add("hidden");
-    quizScreenElement.classList.add("hidden");
-    resultScreenElement.classList.add("hidden");
-
     document.getElementById(id).classList.remove("hidden");
-    document.getElementById(id).classList.add("active");
 }
 
+// no schow screen
+function noShowScreen(id) {
+    document.getElementById(id).classList.add("hidden");
+}
 
+// show question+answers 
+// create checkboxes
+// check answers
+// show result-screen
 function showQuestion(currentIndex) {
     const question = questions[currentIndex];
 
     quizScreenElement.innerHTML = `
-      <div>
+      <div class="quiz">
           <h2>Frage ${currentIndex + 1}</h2>
-          <p>${question.question}</p>
-          <div id="answers"></div>
+          <p class="question">${question.question}</p>
+          <div id="answers" class="answer"></div>
           <button id="submitButton">Bestätigen</button>
       </div>
       `;
@@ -332,7 +351,8 @@ function showQuestion(currentIndex) {
         answersElement.appendChild(answerText);
         answersElement.appendChild(document.createElement("br"));
     });
-    
+
+
     const submitButton = document.getElementById("submitButton");
 
     submitButton.addEventListener("click", () => {
@@ -358,11 +378,13 @@ function showQuestion(currentIndex) {
         if (currentIndex < questions.length) {
             showQuestion(currentIndex);
         } else {
+            noShowScreen("quiz-screen");
             showScreen("result-screen");
-            resultScreenElement.textContent = `Ergebnis: ${score}/2000 points`;
+            resultText.textContent = `Deine Ergebnis: ${score}/2000 points`;
         }
     });
 }
+
 
 
 // TODO: 
@@ -374,18 +396,6 @@ function showQuestion(currentIndex) {
 // Punkte hochzählen
 // Die Zählervariable erhöhen.
 // Nächste Frage.
-
-// let currentIndex = 0;
-// let score = 0;
-
-// function showScreen(id) {
-//   // Alle Sections verstecken
-//   // Section mit der passenden id einblenden
-// }
-
-// function showQuestion(currentIndex) {
-//   // Frage und Antwort-Buttons dynamisch in #quiz-screen schreiben
-// }
 
 // function checkAnswer(selectedIndex) {
 //   // Vergleich mit isCorrect
