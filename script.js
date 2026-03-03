@@ -11,7 +11,6 @@ const startQuizButton = document.getElementById("startQuiz");
 const questions = [
     {
         question: "Bei welchem der folgenden Filme hat Tim Burton keine Regie geführt?",
-        points: 100,
         answers: [
             {
                 answer: "Coraline",
@@ -33,7 +32,6 @@ const questions = [
     },
     {
         question: "Welche Filme sind die bekannteste Film von Ingmar Bergman?",
-        points: 300,
         answers: [
             {
                 answer: "Persona",
@@ -60,7 +58,6 @@ const questions = [
 
     {
         question: "Welcher Film von David Lynch gewann 1990 die Goldene Palme bei den Filmfestspielen von Cannes?",
-        points: 300,
         answers: [
             {
                 answer: "Wild at Heart",
@@ -198,6 +195,7 @@ function showQuestion(currentIndex) {
         answersElement.appendChild(document.createElement("br"));
     });
 
+
     submitButton.addEventListener("click", () => {
         currentIndex++;
 
@@ -205,8 +203,20 @@ function showQuestion(currentIndex) {
             showQuestion(currentIndex);
         } else {
             showScreen("result-screen");
-            resultScreenElement.textContent = `Ergebnis: ${score}`;
         }
+
+        resultScreenElement.textContent = `Ergebnis: ${score}`;
+
+        const checkboxes = document.querySelectorAll('#answers input[type="checkbox"]');
+
+        checkboxes.forEach((checkbox, index) => {
+            const isChecked = checkbox.checked;
+            const isCorrect = question.answers[index].isCorrect;
+
+            if (isChecked === isCorrect) {
+                score += 100;
+            }
+        });
     });
 }
 
