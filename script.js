@@ -1,14 +1,12 @@
 
 const startScreenElement = document.getElementById("start-screen");
-
 const quizScreenElement = document.getElementById("quiz-screen");
-
 const resultScreenElement = document.getElementById("result-screen");
 
 const answersListElement = document.getElementById("answerslist");
-
 const questionTextElement = document.getElementById("questionstext");
 
+const startQuizButton = document.getElementById("startQuiz");
 
 const questions = [
     {
@@ -88,95 +86,73 @@ const questions = [
     }
 ]
 
-console.log(questions)
 
 let currentIndex = 0;
 let score = 0;
 
-const getQuizButton = document.getElementById("getQuiz");
+startQuizButton.addEventListener("click", () => {
+    showScreen("quiz-screen");
+    showQuestion(currentIndex);
+});
+
+
+// const acceptButton = document.createElement("button");
+// acceptButton.textContent = "Bestätigen";
+// quizScreenElement.appendChild(acceptButton);
+
+// acceptButton.addEventListener("click", () => {
+
+//     currentIndex++;
+
+//     if (currentIndex < questions.length) {
+//         showQuestion(currentIndex);
+//     }
+// });
 
 
 
-getQuizButton.addEventListener("click", () => {
-    showQuestion(currentIndex)
-})
+// function showQuestion(currentIndex) {
+//     const question = questions[currentIndex];
 
+//     questionTextElement.textContent = `Frage ${currentIndex + 1}: ${question.question}`;
+//     answersListElement.innerHTML = "";
 
+//     question.answers.forEach(answerObj => {
+//         const li = document.createElement("li");
 
+//         const checkbox = document.createElement("input");
+//         checkbox.type = "checkbox";
+//         checkbox.value = answerObj.answer;
 
+//         li.appendChild(checkbox);
 
-function showScreen(id) {
+//         li.appendChild(document.createTextNode(" " + answerObj.answer));
 
+//         answersListElement.appendChild(li);
+//     });
+// }
 
-}
-function showQuestion(index) {
-    const question = questions[index];
+// TODO: 
+// Variable anlegen, wo drin steht, bei welcher Frage ich gerade bin (fängt bei 0 an).
+// Per index eine Frage auslesen.
+// Fragestellung auf den Screen malen.
+// Mit Schleife durch Antwortmöglichkeiten druchgehen und für jede einen Button machen.
+// Wenn auf den Button gedrückt wird -> überprüfen, ob sie richtig ist
+// Punkte hochzählen
+// Die Zählervariable erhöhen.
+// Nächste Frage.
 
-    
-    questionTextElement.textContent = `Frage 1: ${question.question}`;
+// let currentIndex = 0;
+// let score = 0;
 
-    
-    answersListElement.innerHTML = "";
+// function showScreen(id) {
+//   // Alle Sections verstecken
+//   // Section mit der passenden id einblenden
+// }
 
-     const acceptButton = document.createElement("button");
-     acceptButton.id = "acceptButton"
-     
-        acceptButton.textContent ="Ok";
-
-        quizScreenElement.appendChild(acceptButton);
-
-        
-    acceptButton.addEventListener("click", () => {
-        
-        currentIndex++;
-        console.log("Button clicked!");
-
-        if (currentIndex < questions.length) {
-            showQuestion(currentIndex);
-        } else {
-            console.log("Quiz finished! Score:", score);
-            
-        }
-    });
-
-    
-    question.answers.forEach(answerObj => {
-        const li = document.createElement("li");
-
-        
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.value = answerObj.answer; 
-
-        
-        li.appendChild(checkbox);
-
-       
-        const text = document.createTextNode(" " + answerObj.answer);
-        li.appendChild(text);
-
-        
-        
-
-       
-
-        answersListElement.appendChild(li);
-
-
-
-
-        
-    });
-
-}
-
-const acceptButton = document.getElementById("acceptButton");
-
-
-
-
-
-
+// function showQuestion(currentIndex) {
+//   // Frage und Antwort-Buttons dynamisch in #quiz-screen schreiben
+// }
 
 // function checkAnswer(selectedIndex) {
 //   // Vergleich mit isCorrect
@@ -185,19 +161,52 @@ const acceptButton = document.getElementById("acceptButton");
 //   // showQuestion(currentIndex) oder showScreen("result-screen")
 // }
 
+function showScreen(id) {
+    startScreenElement.classList.add("hidden");
+    quizScreenElement.classList.add("hidden");
+    resultScreenElement.classList.add("hidden");
 
-
-
-
-//     quizScreenElement.innerHTML = `
-//         <div><h3>Frage ${currentIndex + 1}</h3>
-//         <p>${questions[currentIndex].question}</p>
-//         <p>${questions[currentIndex].answers}</p>
-//       </div>
-//     `;
-
-
-
-function checkAnswer(selectedIndex) {
-
+    document.getElementById(id).classList.remove("hidden");
+    document.getElementById(id).classList.add("active");
 }
+
+function showQuestion(currentIndex) {
+    const question = questions[currentIndex];
+
+    quizScreenElement.innerHTML = `
+      <div>
+          <h2>Frage ${currentIndex + 1}</h2>
+          <p>${question.question}</p>
+          <div id="answers"></div>
+          <button id="submitButton">Bestätigen</button>
+      </div>
+      `;
+
+    const answersElement = document.getElementById("answers");
+
+
+    question.answers.forEach((answerObj, index) => {
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = index;
+
+        const answerText = document.createElement("span");
+        answerText.textContent = answerObj.answer;
+
+        answersElement.appendChild(checkbox);
+        answersElement.appendChild(answerText);
+        answersElement.appendChild(document.createElement("br"));
+    });
+
+    submitButton.addEventListener("click", () => {
+        currentIndex++;
+
+        if (currentIndex < questions.length) {
+            showQuestion(currentIndex);
+        } else {
+            showScreen("result-screen");
+            resultScreenElement.textContent = `Ergebnis: ${score}`;
+        }
+    });
+}
+
