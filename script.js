@@ -1,13 +1,3 @@
-
-const startScreenElement = document.getElementById("start-screen");
-const quizScreenElement = document.getElementById("quiz-screen");
-const resultScreenElement = document.getElementById("result-screen");
-
-const answersListElement = document.getElementById("answerslist");
-const questionTextElement = document.getElementById("questionstext");
-
-const startQuizButton = document.getElementById("startQuiz");
-
 const questions = [
     {
         question: "Bei welchem der folgenden Filme hat Tim Burton keine Regie geführt?",
@@ -248,6 +238,181 @@ const questions = [
     }
 ]
 
+
+const startScreenElement = document.getElementById("start-screen");
+const quizScreenElement = document.getElementById("quiz-screen");
+const resultScreenElement = document.getElementById("result-screen");
+
+const resultTextElement = document.getElementById("resultText");
+
+const startQuizButton = document.getElementById("startQuiz");
+const toStartButton = document.getElementById("toStart");
+
+
+let currentIndex = 0;
+let score = 0;
+
+
+noShowScreen("quiz-screen");
+noShowScreen("result-screen");
+
+showScreen("start-screen");
+
+
+// start quiz
+startQuizButton.addEventListener("click", () => {
+
+    noShowScreen("start-screen");
+    
+    showScreen("quiz-screen");
+    showQuestion(currentIndex);
+});
+
+
+// restart == show start-screen
+toStartButton.addEventListener("click", () => {
+
+    score = 0;
+    currentIndex = 0;
+
+    noShowScreen("quiz-screen");
+    noShowScreen("result-screen");
+
+    showScreen("start-screen");
+});
+
+
+// show screen
+function showScreen(id) {
+    document.getElementById(id).classList.remove("hidden");
+}
+
+
+// don´t show screen
+function noShowScreen(id) {
+    document.getElementById(id).classList.add("hidden");
+}
+
+
+// show questions + answers 
+function showQuestion(currentIndex) {
+
+    const question = questions[currentIndex];
+
+    quizScreenElement.innerHTML = `
+        <div class="quiz">
+            <h2>Frage ${currentIndex + 1}</h2>
+            <p class="question"><mark>${question.question}</mark></p>
+            <div id="answers" class="answer"></div>
+            <button id="submitButton">Bestätigen</button>
+        </div>
+      `;
+
+    makeAnswers(question.answers);
+
+    const submitButton = document.getElementById("submitButton");
+    submitButton.addEventListener("click", () => checkAnswer(question));
+}
+
+
+// create answers
+function makeAnswers(answers) {
+
+    const answersElement = document.getElementById("answers");
+
+    answersElement.innerHTML = "";
+
+    answers.forEach((answerObj, index) => {
+
+        answersElement.innerHTML += `
+            <input type="checkbox" value="${index}">
+            <span>${answerObj.answer}</span><br>
+        `;
+    });
+
+    // answers.forEach((answerObj, index) => {
+    //     const checkbox = document.createElement("input");
+    //     checkbox.type = "checkbox";
+    //     checkbox.value = index;
+
+    //     const answerText = document.createElement("span");
+    //     answerText.textContent = answerObj.answer;
+
+    //     answersElement.appendChild(checkbox);
+    //     answersElement.appendChild(answerText);
+    //     answersElement.appendChild(document.createElement("br"));
+    // });
+}
+
+// check answers
+function checkAnswer(question) {
+
+    const checkboxes = document.querySelectorAll('#answers input');
+
+    let isAllCorrect = true;
+
+    checkboxes.forEach((checkbox, index) => {
+        if (checkbox.checked !== question.answers[index].isCorrect) {
+            isAllCorrect = false;
+        }
+    });
+
+    if (isAllCorrect) {
+        score += question.points;
+    }
+
+    currentIndex++;
+
+    if (currentIndex < questions.length) {
+        showQuestion(currentIndex);
+    } else {
+        showResult();
+    }
+}
+
+// show result
+function showResult() {
+
+    noShowScreen("quiz-screen");
+    showScreen("result-screen");
+
+    resultTextElement.textContent = `Dein Ergebnis:\n${score} / 2000 points`;
+}
+
+// ANDERE VERSION SubmitButton:
+
+//  submitButton.addEventListener("click", () => {
+
+//         const checkboxes = document.querySelectorAll('#answers input[type="checkbox"]');
+//         let isAllCorrect = true;
+
+//         checkboxes.forEach((checkbox, index) => {
+//             const isChecked = checkbox.checked;
+//             const isCorrect = question.answers[index].isCorrect;
+
+//             if (isChecked !== isCorrect) {
+//                 isAllCorrect = false;
+//             }
+//         });
+
+//         if (isAllCorrect) {
+//             score += question.points;
+//         }
+
+//         currentIndex++;
+
+//         if (currentIndex < questions.length) {
+//             showQuestion(currentIndex);
+//         } else {
+//             noShowScreen("quiz-screen");
+//             showScreen("result-screen");
+//             resultText.textContent = `Deine Ergebnis:\n${score} / 2000 points`;
+//         }
+//     });
+
+
+// ESRTE VERSION ShowQuestion():
+
 // const acceptButton = document.createElement("button");
 // acceptButton.textContent = "Bestätigen";
 // quizScreenElement.appendChild(acceptButton);
@@ -260,8 +425,6 @@ const questions = [
 //         showQuestion(currentIndex);
 //     }
 // });
-
-
 // function showQuestion(currentIndex) {
 //     const question = questions[currentIndex];
 
@@ -283,126 +446,3 @@ const questions = [
 //     });
 // }
 
-
-
-let currentIndex = 0;
-let score = 0;
-
-
-noShowScreen("quiz-screen");
-noShowScreen("result-screen");
-showScreen("start-screen");
-
-// start quiz
-startQuizButton.addEventListener("click", () => {
-    noShowScreen("start-screen");
-    showScreen("quiz-screen");
-    showQuestion(currentIndex);
-});
-
-const resultText = document.getElementById("resultText");
-const toStartButton = document.getElementById("toStart");
-
-// show result-screen
-toStartButton.addEventListener("click", () => {
-    score = 0;
-    currentIndex = 0;
-    noShowScreen("quiz-screen");
-    noShowScreen("result-screen");
-    showScreen("start-screen");
-});
-
-
-// show screen
-function showScreen(id) {
-    document.getElementById(id).classList.remove("hidden");
-}
-
-// no schow screen
-function noShowScreen(id) {
-    document.getElementById(id).classList.add("hidden");
-}
-
-// show question+answers 
-// create checkboxes
-// check answers
-// show result-screen
-function showQuestion(currentIndex) {
-    const question = questions[currentIndex];
-
-    quizScreenElement.innerHTML = `
-      <div class="quiz">
-          <h2>Frage ${currentIndex + 1}</h2>
-          <p class="question"><mark>${question.question}</mark></p>
-          <div id="answers" class="answer"></div>
-          <button id="submitButton">Bestätigen</button>
-      </div>
-      `;
-
-    const answersElement = document.getElementById("answers");
-
-
-    question.answers.forEach((answerObj, index) => {
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.value = index;
-
-        const answerText = document.createElement("span");
-        answerText.textContent = answerObj.answer;
-
-        answersElement.appendChild(checkbox);
-        answersElement.appendChild(answerText);
-        answersElement.appendChild(document.createElement("br"));
-    });
-
-    
-    const submitButton = document.getElementById("submitButton");
-
-    submitButton.addEventListener("click", () => {
-
-        const checkboxes = document.querySelectorAll('#answers input[type="checkbox"]');
-        let isAllCorrect = true;
-
-        checkboxes.forEach((checkbox, index) => {
-            const isChecked = checkbox.checked;
-            const isCorrect = question.answers[index].isCorrect;
-
-            if (isChecked !== isCorrect) {
-                isAllCorrect = false;
-            }
-        });
-
-        if (isAllCorrect) {
-            score += question.points;
-        }
-
-        currentIndex++;
-
-        if (currentIndex < questions.length) {
-            showQuestion(currentIndex);
-        } else {
-            noShowScreen("quiz-screen");
-            showScreen("result-screen");
-            resultText.textContent = `Deine Ergebnis:\n${score} / 2000 points`;
-        }
-    });
-}
-
-
-
-// TODO: 
-// Variable anlegen, wo drin steht, bei welcher Frage ich gerade bin (fängt bei 0 an).
-// Per index eine Frage auslesen.
-// Fragestellung auf den Screen malen.
-// Mit Schleife durch Antwortmöglichkeiten druchgehen und für jede einen Button machen.
-// Wenn auf den Button gedrückt wird -> überprüfen, ob sie richtig ist
-// Punkte hochzählen
-// Die Zählervariable erhöhen.
-// Nächste Frage.
-
-// function checkAnswer(selectedIndex) {
-//   // Vergleich mit isCorrect
-//   // score erhöhen falls richtig
-//   // currentIndex++
-//   // showQuestion(currentIndex) oder showScreen("result-screen")
-// }
