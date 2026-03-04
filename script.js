@@ -40,10 +40,6 @@ const questions = [
             {
                 answer: "La Dolce Vita",
                 isCorrect: false
-            },
-            {
-                answer: "Drei Farben: Blau",
-                isCorrect: false
             }
         ]
     },
@@ -66,10 +62,6 @@ const questions = [
             },
             {
                 answer: "Lost Highway",
-                isCorrect: false
-            },
-            {
-                answer: "Elephant Man",
                 isCorrect: false
             }
         ]
@@ -203,10 +195,6 @@ const questions = [
             {
                 answer: "Bergman",
                 isCorrect: true
-            },
-            {
-                answer: "Fellini",
-                isCorrect: false
             }
         ]
     },
@@ -228,10 +216,6 @@ const questions = [
             },
             {
                 answer: "Atom Egoyan",
-                isCorrect: false
-            },
-            {
-                answer: "Godard",
                 isCorrect: false
             }
         ]
@@ -285,7 +269,9 @@ toStartButton.addEventListener("click", () => {
 // show screen
 function showScreen(id) {
     document.getElementById(id).classList.remove("hidden");
+
 }
+
 
 
 // don´t show screen
