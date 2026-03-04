@@ -1,59 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-@font-face {
-    font-family: "Algerian";
-    src: url("fonts/AlgerianRegular/AlgerianRegular.ttf");
-}
 
-@font-face {
-    font-family: "Jacquard";
-    src: url("fonts/Jacquard_24/Jacquard24-Regular.ttf");
-}
 
-@font-face {
-    font-family: "Le Murmure";
-    src: url("fonts/murmure-main/fonts/le-murmure.ttf");
-}
-
-@font-face {
-    font-family: "Alegreya";
-    src: url("fonts/Alegreya/Alegreya-VariableFont_wght.ttf");
-}
 
 @font-face {
     font-family: "Almendra";
     src: url("fonts/Almendra/Almendra-Regular.ttf");
 }
 
-@font-face {
-    font-family: "Melodrama";
-    src: url("fonts/Melodrama_Complete-2/Fonts/TTF/Melodrama-Variable.ttf");
-}
+
 
 @font-face {
     font-family: "ABC_Maxi";
     src: url("fonts/ABC_Maxi/ABC_Maxi_Plus_Variable/ABCMaxiPlusVariable-Trial.ttf");
 }
 
-@font-face {
-    font-family: "Boxing";
-    src: url("fonts/Boxing_Complete/Fonts/WEB/fonts/Boxing-Regular.ttf");
-}
-
-@font-face {
-    font-family: "Aktura";
-    src: url("fonts/Aktura_Complete/Fonts/WEB/fonts/Aktura-Regular.ttf");
-}
-
-@font-face {
-    font-family: "New Title";
-    src: url("fonts/NewTitle_Complete/Fonts/TTF/NewTitle-Variable.ttf");
-}
-
-@font-face {
-    font-family: "Striper";
-    src: url("fonts/Striper_Complete/Fonts/WEB/fonts/Striper-Regular.ttf");
-}
 
 * {
     margin: 0;
