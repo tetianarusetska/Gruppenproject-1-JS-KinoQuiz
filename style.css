@@ -31,8 +31,8 @@
 }
 
 @font-face {
-    font-family: "ABC Maxi";
-    src: url("fonts/ABC Maxi/ABC Maxi Plus Variable/.ABCMaxiPlusVariable-Trial.ttf");
+    font-family: "ABC_Maxi";
+    src: url("fonts/ABC_Maxi/ABC_Maxi_Plus_Variable/ABCMaxiPlusVariable-Trial.ttf");
 }
 
 @font-face {
@@ -62,7 +62,11 @@
 
 :root {
     --mainFont: "Monserrat", sans-serif;
-    --decorativeFont: "Almendra";
+    --primary-color:  rgb(0, 0, 0);
+    --secondary-color: rgb(236, 32, 32);
+    --decorativeFont: "ABC_Maxi";
+    --decorativeFont2: "Almendra";
+
 }
 
 body {
@@ -76,22 +80,28 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 24px;
-    margin-top: 300px;
-    border-radius: 8px;
+    gap: 46px;
+    margin-top: 100px;
+    border-radius: 16px;
     padding: 16px;
     margin-inline: auto;
-    width: 500px;
+    width: 1000px;
+    height: 520px;
 }
 
+
+
 h1 {
-    font-size: 33px;
+    font-size: 86px;
     font-family: var(--decorativeFont);
+
+
 }
 
 h2 {
+
     font-size: 30px;
-    font-family: var(--decorativeFont);
+    font-family: var(--decorativeFont2);
 }
 
 .quiz {
@@ -114,16 +124,28 @@ h2 {
     padding: 8px 12px;
     border: none;
     border-radius: 4px;
-    background-color: rgb(148, 178, 197);
+    background-color: rgb(4, 4, 4);
+    color: white;
 }
 
 #startQuiz:hover {
-    background-color: lightskyblue;
+    background-color: var(--secondary-color);
 }
 
 .wilkommen {
     font-size: 22px;
     letter-spacing: 1.6px;
+    width: 500px;
+    text-align: center;
+
+
+}
+
+.willkommentext {
+    font-size: 22px;
+    letter-spacing: 1.6px;
+    width: 500px;
+    text-align: center;
 }
 
 .hidden {
@@ -140,6 +162,24 @@ input {
     height: 20px;
 }
 
+#answers input:checked {
+    background-color: black;
+    
+}
+
+input[type="checkbox"] {
+width: 20px;
+height: 20px;
+accent-color: rgb(0, 0, 0);
+border: 2px solid rgb(0, 0, 0);
+border-radius: 4px;
+background-color: white;
+}
+
+input[type="checkbox"]:checked {
+background-color: rgb(148, 178, 197);
+}
+
 .answer {
     font-size: 18px;
 }
@@ -147,36 +187,37 @@ input {
 #submitButton {
     letter-spacing: 1.6px;
     font-size: 17px;
-    background-color: rgb(148, 178, 197);
+    background-color: var(--primary-color);
     padding: 6px 10px;
     border: none;
     border-radius: 4px;
     width: fit-content;
+    color: white;
 
 }
 
 #submitButton:hover {
-    background-color: lightskyblue;
+    background-color: var(--secondary-color);
 }
 
 #resultText {
     font-size: 24px;
     white-space: pre-line;
     text-align: center;
-    font-family: var(--decorativeFont);
+    font-family: var(--decorativeFont2);
 }
 
 #toStart {
     font-size: 17px;
-    background-color: lightgrey;
+    background-color: var(--primary-color);
     padding: 6px 10px;
     border: none;
     border-radius: 4px;
     width: fit-content;
     letter-spacing: 1.6px;
-    background-color: rgb(148, 178, 197);
+    color: white;
 }
 
 #toStart:hover {
-    background-color: lightskyblue;
+    background-color: var(--secondary-color);
 }

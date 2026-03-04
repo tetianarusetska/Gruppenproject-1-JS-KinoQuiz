@@ -1,7 +1,7 @@
 const questions = [
     {
         question: "Bei welchem der folgenden Filme hat Tim Burton keine Regie geführt?",
-        points: 100,
+        points: 200,
         answers: [
             {
                 answer: "Coraline",
@@ -50,7 +50,7 @@ const questions = [
 
     {
         question: "Welcher Film von David Lynch gewann 1990 die Goldene Palme bei den Filmfestspielen von Cannes?",
-        points: 300,
+        points: 200,
         answers: [
             {
                 answer: "Wild at Heart",
@@ -76,7 +76,7 @@ const questions = [
     },
     {
         question: "Welche Filme stammen von Quentin Tarantino?",
-        points: 300,
+        points: 200,
         answers: [
             {
                 answer: "Pulp Fiction",
@@ -127,7 +127,7 @@ const questions = [
                 isCorrect: false
             },
             {
-                answer: "The Shining Velvet",
+                answer: "The Shining",
                 isCorrect: true
             },
             {
@@ -185,7 +185,7 @@ const questions = [
         ]
     },
     {
-        question: "Wer nutze in den 60er Jahren Profile als Grundlage des Bildaufbaus?",
+        question: "Wer nutzte in den 60er Jahren Gesichtsprofile als Grundlage des Bildaufbaus?",
         points: 200,
         answers: [
             {
@@ -212,7 +212,7 @@ const questions = [
     },
     {
         question: `Wer ist der Regisseur des Films "Mommy"?`,
-        points: 100,
+        points: 200,
         answers: [
             {
                 answer: "Denis Villeneuve",
@@ -302,7 +302,7 @@ function showQuestion(currentIndex) {
     quizScreenElement.innerHTML = `
         <div class="quiz">
             <h2>Frage ${currentIndex + 1}</h2>
-            <p class="question"><mark>${question.question}</mark></p>
+            <p class="question">${question.question}</p>
             <div id="answers" class="answer"></div>
             <button id="submitButton">Bestätigen</button>
         </div>
@@ -376,7 +376,7 @@ function showResult() {
     noShowScreen("quiz-screen");
     showScreen("result-screen");
 
-    resultTextElement.textContent = `Dein Ergebnis:\n${score} / 2000 points`;
+    resultTextElement.textContent = `Dein Ergebnis:\n${score} / 2000 Punkte`;
 }
 
 // ANDERE VERSION SubmitButton:
