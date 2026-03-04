@@ -1,6 +1,6 @@
 const questions = [
     {
-        question: "Bei welchem der folgenden Filme hat Tim Burton keine Regie geführt?",
+        question: "Bei welchen der folgenden Filme hat Tim Burton keine Regie geführt?",
         points: 200,
         answers: [
             {
@@ -12,7 +12,7 @@ const questions = [
                 isCorrect: true
             },
             {
-                answer: "Beetlejuice, Beetlejuice",
+                answer: "Beetlejuice Beetlejuice",
                 isCorrect: false
             },
             {
@@ -22,7 +22,7 @@ const questions = [
         ]
     },
     {
-        question: "Welche Filme sind die bekanntesten Filme von Ingmar Bergman?",
+        question: "Welche Filme sind die bekanntesten Werke von Ingmar Bergman?",
         points: 200,
         answers: [
             {
@@ -101,7 +101,7 @@ const questions = [
                 isCorrect: true
             },
             {
-                answer: "The Godfather",
+                answer: "The Godfather/Der Pate",
                 isCorrect: true
             },
             {
@@ -133,7 +133,7 @@ const questions = [
         ]
     },
     {
-        question: "Welche Filme sind die bekanntesten Filme von Federico Fellini?",
+        question: "Welche Filme sind die bekanntesten Werke von Federico Fellini?",
         points: 200,
         answers: [
             {
@@ -149,7 +149,7 @@ const questions = [
                 isCorrect: false
             },
             {
-                answer: "Um Film comme les autres",
+                answer: "Un Film comme les autres",
                 isCorrect: false
             }
         ]
@@ -181,19 +181,19 @@ const questions = [
         points: 200,
         answers: [
             {
-                answer: "Kurosawa",
+                answer: "Akira Kurosawa",
                 isCorrect: true
             },
             {
-                answer: "Tarr",
+                answer: "Béla Tarr",
                 isCorrect: false
             },
             {
-                answer: "Godard",
+                answer: "Jean-Luc Godard",
                 isCorrect: false
             },
             {
-                answer: "Bergman",
+                answer: "Ingmar Bergman",
                 isCorrect: true
             }
         ]
