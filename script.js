@@ -358,7 +358,7 @@ function showResult() {
     showScreen("result-screen");
 
     resultTextElement.textContent = `Dein Ergebnis:\n${score} / 2000 Punkte
-                                    \nSie haben ${amountCorAnsw} Fragen richtig beantwortet!`;
+                                    \nDu hast ${amountCorAnsw} Fragen richtig beantwortet!`;
 }
 
 
