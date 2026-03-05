@@ -222,6 +222,7 @@ const questions = [
     }
 ]
 
+// (!!) Den Timer haben wir mithilfe eines Video-Tutorials geschrieben
 
 const startScreenElement = document.getElementById("start-screen");
 const quizScreenElement = document.getElementById("quiz-screen");
@@ -237,7 +238,7 @@ let currentIndex = 0;
 let score = 0;
 let amountCorAnsw = 0;
 
-// Timer:
+// Timer
 let countdownElement;
 let timer;
 let startMinutes = 3;
@@ -267,17 +268,18 @@ startQuizButton.addEventListener("click", () => {
 
     // Timer:
     time = startMinutes * 60;
-
     countdownElement = document.getElementById("countdown");
     timer = setInterval(updateCountdown, 1000);
 
+    // show question + answer
     showQuestion(currentIndex);
 });
 
 
 // restart quiz == show start-screen
 toStartButton.addEventListener("click", () => {
-    // Timer.
+
+    // Timer:
     clearInterval(timer);
 
     score = 0;
@@ -285,16 +287,16 @@ toStartButton.addEventListener("click", () => {
     amountCorAnsw = 0;
 
     noShowScreen("result-screen");
-
     showScreen("start-screen");
 });
 
 
 // show questions + answers 
+// click submitButton
 function showQuestion(currentIndex) {
 
     const question = questions[currentIndex];
-    const container = document.getElementById("question-container");
+    const container = document.getElementById("container");
 
     container.innerHTML = `
         <div>
@@ -304,9 +306,11 @@ function showQuestion(currentIndex) {
             <button id="submitButton">Bestätigen</button>
         </div>
       `;
-
+    
+    // create answers
     makeAnswers(question.answers);
 
+    // On click, the answer is checked, if correct the function showResult() is called
     const submitButton = document.getElementById("submitButton");
     submitButton.addEventListener("click", () => checkAnswer(question));
 }
@@ -319,6 +323,7 @@ function makeAnswers(answers) {
 
     answersElement.innerHTML = "";
 
+    // create answers
     answers.forEach((answerObj, index) => {
 
         answersElement.innerHTML += `
@@ -326,6 +331,8 @@ function makeAnswers(answers) {
             <span>${answerObj.answer}</span><br>
         `;
     });
+
+    // another version answers.forEach
 
     // answers.forEach((answerObj, index) => {
     //     const checkbox = document.createElement("input");
@@ -343,24 +350,25 @@ function makeAnswers(answers) {
 
 // check answers
 function checkAnswer(question) {
-
+    // gets the checkboxes
     const checkboxes = document.querySelectorAll('#answers input');
 
     let isAllCorrect = true;
 
+    // checks if the answer is correct
     checkboxes.forEach((checkbox, index) => {
         if (checkbox.checked !== question.answers[index].isCorrect) {
             isAllCorrect = false;
         }
     });
-
+    // If correct: increases score and correct answer count
     if (isAllCorrect) {
         score += question.points;
         amountCorAnsw++;
     }
-
+    // next question
     currentIndex++;
-
+    // show result-screen or next question
     if (currentIndex < questions.length) {
         showQuestion(currentIndex);
     } else {
@@ -380,8 +388,7 @@ function showResult() {
 }
 
 
-// Timer:
-
+// Timer
 function updateCountdown() {
 
     const minutes = Math.floor(time / 60);
@@ -402,7 +409,7 @@ function updateCountdown() {
     time--;
 }
 
-// ANDERE VERSION (mit SubmitButton + Event):
+// ANDERE VERSION SubmitButton + Event:
 
 //  submitButton.addEventListener("click", () => {
 
@@ -435,7 +442,7 @@ function updateCountdown() {
 
 
 
-// ESRTE VERSION ShowQuestion() + acceptButton:
+// ESRTE VERSION ShowQuestion() + submitButton:
 
 // const acceptButton = document.createElement("button");
 // acceptButton.textContent = "Bestätigen";
@@ -471,9 +478,6 @@ function updateCountdown() {
 //     });
 // }
 
-// Bonus-Ideen
-// Multiple Choice – mehrere richtige Antworten pro Frage
 // Joker-Funktionen – 50:50, Frage überspringen, zweite Chance
-// Timer – pro Frage oder für das gesamte Quiz
 // Highscore – lokal gespeichert mit LocalStorage
 // Feedback-Zwischenschritt – „Richtig!" / „Falsch!" vor der nächsten Frage
