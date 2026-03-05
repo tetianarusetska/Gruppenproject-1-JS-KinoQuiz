@@ -199,27 +199,27 @@ const questions = [
         ]
     },
     {
-    question: `Welche Filme gehören zu den bekannten Werken von Xavier Dolan?`,
-    points: 200,
-    answers: [
-        {
-            answer: "Mommy",
-            isCorrect: true
-        },
-        {
-            answer: "Laurence Anyways",
-            isCorrect: true
-        },
-        {
-            answer: "Tom at the Farm",
-            isCorrect: true
-        },
-        {
-            answer: "Inception",
-            isCorrect: false
-        }
-    ]
-}
+        question: `Welche Filme gehören zu den bekannten Werken von Xavier Dolan?`,
+        points: 200,
+        answers: [
+            {
+                answer: "Mommy",
+                isCorrect: true
+            },
+            {
+                answer: "Laurence Anyways",
+                isCorrect: true
+            },
+            {
+                answer: "Tom at the Farm",
+                isCorrect: true
+            },
+            {
+                answer: "Inception",
+                isCorrect: false
+            }
+        ]
+    }
 ]
 
 
@@ -237,6 +237,12 @@ let currentIndex = 0;
 let score = 0;
 let amountCorAnsw = 0;
 
+// Timer:
+let countdownElement;
+let timer;
+let startMinutes = 3;
+let time;
+
 
 // show screen
 function showScreen(id) {
@@ -252,9 +258,18 @@ function noShowScreen(id) {
 // start quiz == show quiz-screen
 startQuizButton.addEventListener("click", () => {
 
-    noShowScreen("start-screen");
+    score = 0;
+    currentIndex = 0;
+    amountCorAnsw = 0;
 
+    noShowScreen("start-screen");
     showScreen("quiz-screen");
+
+    // Timer:
+    time = startMinutes * 60;
+
+    countdownElement = document.getElementById("countdown");
+    timer = setInterval(updateCountdown, 1000);
 
     showQuestion(currentIndex);
 });
@@ -262,6 +277,8 @@ startQuizButton.addEventListener("click", () => {
 
 // restart quiz == show start-screen
 toStartButton.addEventListener("click", () => {
+    // Timer.
+    clearInterval(timer);
 
     score = 0;
     currentIndex = 0;
@@ -277,9 +294,10 @@ toStartButton.addEventListener("click", () => {
 function showQuestion(currentIndex) {
 
     const question = questions[currentIndex];
+    const container = document.getElementById("question-container");
 
-    quizScreenElement.innerHTML = `
-        <div class="quiz">
+    container.innerHTML = `
+        <div>
             <h2>Frage ${currentIndex + 1}</h2>
             <p class="question">${question.question}</p>
             <div id="answers" class="answer"></div>
@@ -361,6 +379,28 @@ function showResult() {
                                     \nDu hast ${amountCorAnsw} Fragen richtig beantwortet!`;
 }
 
+
+// Timer:
+
+function updateCountdown() {
+
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    if (countdownElement) {
+        countdownElement.innerHTML = `${minutes}:${seconds}`;
+    }
+
+    if (time <= 0) {
+        clearInterval(timer);
+        showResult();
+        resultTextElement.textContent = `Zeit ist abgelaufen\n\nDein Ergebnis:\n${score} / 2000 Punkte
+                                        \nDu hast ${amountCorAnsw} Fragen richtig beantwortet!`;
+    }
+
+    time--;
+}
 
 // ANDERE VERSION (mit SubmitButton + Event):
 
