@@ -34,8 +34,8 @@ const questions = [
                 isCorrect: true
             },
             {
-                answer: "8 1/2",
-                isCorrect: false
+                answer: "The Godfather/Der Pate",
+                isCorrect: true
             },
             {
                 answer: "La Dolce Vita",
@@ -101,7 +101,7 @@ const questions = [
                 isCorrect: true
             },
             {
-                answer: "The Godfather/Der Pate",
+                answer: "The Godfather",
                 isCorrect: true
             },
             {
@@ -235,7 +235,7 @@ const toStartButton = document.getElementById("toStart");
 
 let currentIndex = 0;
 let score = 0;
-
+let amountCorAnsw = 0;
 
 noShowScreen("quiz-screen");
 noShowScreen("result-screen");
@@ -247,7 +247,7 @@ showScreen("start-screen");
 startQuizButton.addEventListener("click", () => {
 
     noShowScreen("start-screen");
-    
+
     showScreen("quiz-screen");
     showQuestion(currentIndex);
 });
@@ -258,6 +258,7 @@ toStartButton.addEventListener("click", () => {
 
     score = 0;
     currentIndex = 0;
+    amountCorAnsw = 0;
 
     noShowScreen("quiz-screen");
     noShowScreen("result-screen");
@@ -271,7 +272,6 @@ function showScreen(id) {
     document.getElementById(id).classList.remove("hidden");
 
 }
-
 
 
 // don´t show screen
@@ -345,6 +345,7 @@ function checkAnswer(question) {
 
     if (isAllCorrect) {
         score += question.points;
+        amountCorAnsw++;
     }
 
     currentIndex++;
@@ -356,16 +357,19 @@ function checkAnswer(question) {
     }
 }
 
+
 // show result
 function showResult() {
 
     noShowScreen("quiz-screen");
     showScreen("result-screen");
 
-    resultTextElement.textContent = `Dein Ergebnis:\n${score} / 2000 Punkte`;
+    resultTextElement.textContent = `Dein Ergebnis:\n${score} / 2000 Punkte
+                                    \nSie haben ${amountCorAnsw} Fragen richtig beantwortet!`;
 }
 
-// ANDERE VERSION SubmitButton:
+
+// ANDERE VERSION (mit SubmitButton + Event):
 
 //  submitButton.addEventListener("click", () => {
 
@@ -397,7 +401,8 @@ function showResult() {
 //     });
 
 
-// ESRTE VERSION ShowQuestion():
+
+// ESRTE VERSION ShowQuestion() + acceptButton:
 
 // const acceptButton = document.createElement("button");
 // acceptButton.textContent = "Bestätigen";
