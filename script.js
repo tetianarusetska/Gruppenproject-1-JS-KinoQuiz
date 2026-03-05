@@ -199,27 +199,27 @@ const questions = [
         ]
     },
     {
-        question: `Wer ist der Regisseur des Films "Mommy"?`,
-        points: 200,
-        answers: [
-            {
-                answer: "Denis Villeneuve",
-                isCorrect: false
-            },
-            {
-                answer: "Xavier Dolan",
-                isCorrect: true
-            },
-            {
-                answer: "David Cronenberg",
-                isCorrect: false
-            },
-            {
-                answer: "Atom Egoyan",
-                isCorrect: false
-            }
-        ]
-    }
+    question: `Welche Filme gehören zu den bekannten Werken von Xavier Dolan?`,
+    points: 200,
+    answers: [
+        {
+            answer: "Mommy",
+            isCorrect: true
+        },
+        {
+            answer: "Laurence Anyways",
+            isCorrect: true
+        },
+        {
+            answer: "Tom at the Farm",
+            isCorrect: true
+        },
+        {
+            answer: "Inception",
+            isCorrect: false
+        }
+    ]
+}
 ]
 
 
@@ -227,44 +227,15 @@ const startScreenElement = document.getElementById("start-screen");
 const quizScreenElement = document.getElementById("quiz-screen");
 const resultScreenElement = document.getElementById("result-screen");
 
-const resultTextElement = document.getElementById("resultText");
-
 const startQuizButton = document.getElementById("startQuiz");
 const toStartButton = document.getElementById("toStart");
+
+const resultTextElement = document.getElementById("resultText");
 
 
 let currentIndex = 0;
 let score = 0;
 let amountCorAnsw = 0;
-
-noShowScreen("quiz-screen");
-noShowScreen("result-screen");
-
-showScreen("start-screen");
-
-
-// start quiz
-startQuizButton.addEventListener("click", () => {
-
-    noShowScreen("start-screen");
-
-    showScreen("quiz-screen");
-    showQuestion(currentIndex);
-});
-
-
-// restart == show start-screen
-toStartButton.addEventListener("click", () => {
-
-    score = 0;
-    currentIndex = 0;
-    amountCorAnsw = 0;
-
-    noShowScreen("quiz-screen");
-    noShowScreen("result-screen");
-
-    showScreen("start-screen");
-});
 
 
 // show screen
@@ -272,12 +243,34 @@ function showScreen(id) {
     document.getElementById(id).classList.remove("hidden");
 
 }
-
-
 // don´t show screen
 function noShowScreen(id) {
     document.getElementById(id).classList.add("hidden");
 }
+
+
+// start quiz == show quiz-screen
+startQuizButton.addEventListener("click", () => {
+
+    noShowScreen("start-screen");
+
+    showScreen("quiz-screen");
+
+    showQuestion(currentIndex);
+});
+
+
+// restart quiz == show start-screen
+toStartButton.addEventListener("click", () => {
+
+    score = 0;
+    currentIndex = 0;
+    amountCorAnsw = 0;
+
+    noShowScreen("result-screen");
+
+    showScreen("start-screen");
+});
 
 
 // show questions + answers 
@@ -416,6 +409,7 @@ function showResult() {
 //         showQuestion(currentIndex);
 //     }
 // });
+
 // function showQuestion(currentIndex) {
 //     const question = questions[currentIndex];
 
@@ -437,3 +431,9 @@ function showResult() {
 //     });
 // }
 
+// Bonus-Ideen
+// Multiple Choice – mehrere richtige Antworten pro Frage
+// Joker-Funktionen – 50:50, Frage überspringen, zweite Chance
+// Timer – pro Frage oder für das gesamte Quiz
+// Highscore – lokal gespeichert mit LocalStorage
+// Feedback-Zwischenschritt – „Richtig!" / „Falsch!" vor der nächsten Frage

@@ -13,8 +13,8 @@
 :root {
     --mainFont: "Monserrat", sans-serif;
     --primary-color: rgb(0, 0, 0);
-    --accent-color: rgb(236, 32, 32);
     --secondary-color: rgb(255, 255, 255);
+    --accent-color: rgb(236, 32, 32);
     --decorativeFont: "ABC_Maxi";
     --decorativeFont2: "Almendra";
 
@@ -208,6 +208,8 @@ input[type="checkbox"]:checked {
     text-align: center;
     font-family: var(--decorativeFont2);
 }
+
+
 
 /* RESPONSIVE DESIGN */
 
