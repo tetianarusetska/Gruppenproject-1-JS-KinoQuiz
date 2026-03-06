@@ -199,7 +199,7 @@ const questions = [
         ]
     },
     {
-        question: `Welche Filme gehören zu den bekannten Werken von Xavier Dolan?`,
+        question: `Welche Filme gehören zu den bekanntesten Werken von Xavier Dolan?`,
         points: 200,
         answers: [
             {
