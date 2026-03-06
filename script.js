@@ -35,7 +35,7 @@ const questions = [
             },
             {
                 answer: "The Godfather/Der Pate",
-                isCorrect: true
+                isCorrect: false
             },
             {
                 answer: "La Dolce Vita",
@@ -101,7 +101,7 @@ const questions = [
                 isCorrect: true
             },
             {
-                answer: "The Godfather",
+                answer: "The Godfather/Der Pate",
                 isCorrect: true
             },
             {
