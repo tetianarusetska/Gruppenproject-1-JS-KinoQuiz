@@ -16,7 +16,7 @@ const questions = [
                 isCorrect: false
             },
             {
-                answer: "Big Fish",
+                answer: "Big  Fish",
                 isCorrect: false
             }
         ]
